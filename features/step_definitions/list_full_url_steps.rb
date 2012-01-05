@@ -1,3 +1,8 @@
+Before do
+  @orig_stderr = $stderr
+  $stderr = StringIO.new
+end
+
 Given /^a repo with url "([^"]*)"$/ do |url|
   @repo = DebsFromRepos::ListUrl.new(url)
 end
@@ -12,11 +17,6 @@ end
 
 Given /^one single component called "([^"]*)"$/ do |component|
   @repo.component << component
-end
-
-Before do
-  @orig_stderr = $stderr
-  $stderr = StringIO.new
 end
 
 When /^ask for the full url$/ do
