@@ -1,16 +1,30 @@
 Given /^a Packages\.gz file with url "([^"]*)"$/ do |url|
-  @packages = DebsFromRepos::Packages.new(url)
+  @url = url
+end
+
+Given /^a bad url "([^"]*)"$/ do |url|
+  @url = url
 end
 
 When /^ask for a list of packages$/ do
-  @list = @packages.names
+  @packages = DebsFromRepos::Packages.new(@url)
+  @list = @packages.packages
 end
 
-Then /^I should get a list of stings$/ do
-  @list.should be_a_kind_of Array
-  @list.each {|e| e.should be_a_kind_of String }
+Then /^I should get a empty list$/ do
+  @list.should be_a_kind_of Hash
+  @list.should be_empty
 end
 
-Then /^the list should include "([^"]*)"$/ do |package|
-  @list.should include package
+Then /^I should get a list of pairs: name and description$/ do
+  @list.should be_a_kind_of Hash
+  @list.each_pair do |k,v|
+    k.should be_a_kind_of String
+    k.should be_a_kind_of String
+  end
+end
+
+Then /^the list should include "([^"]*)" with description "([^"]*)"$/ do |package, description|
+  @list.keys.should include package
+  @list[package].should == description
 end
