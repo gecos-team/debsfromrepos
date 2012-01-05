@@ -1,2 +1,2 @@
-require 'debsfromrepos/list_urls'
+require 'debsfromrepos/list_url'
 require 'debsfromrepos/packages'

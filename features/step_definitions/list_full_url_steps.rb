@@ -1,9 +1,9 @@
 Given /^a repo with url "([^"]*)"$/ do |url|
-  @repo = DebsFromRepos::ListUrls.new(url)
+  @repo = DebsFromRepos::ListUrl.new(url)
 end
 
 Given /^a repo with url "([^"]*)", a suite "([^"]*)" and a component called "([^"]*)" altogether$/ do |url, suite, component|
-  @repo = DebsFromRepos::ListUrls.new(url,
+  @repo = DebsFromRepos::ListUrl.new(url,
                                       suite,
                                       component
                                      )

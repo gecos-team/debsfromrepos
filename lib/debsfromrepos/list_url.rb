@@ -1,5 +1,5 @@
 module DebsFromRepos
-  class ListUrls
+  class ListUrl
 
     attr_accessor :suite, :component
 
