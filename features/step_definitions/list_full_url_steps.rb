@@ -17,6 +17,11 @@ Given /^one single component called "([^"]*)"$/ do |component|
   @repo.component << component
 end
 
+Before do
+  @orig_stderr = $stderr
+  $stderr = StringIO.new
+end
+
 When /^ask for the full url$/ do
   @urls = @repo.get_url
 end
@@ -30,5 +35,10 @@ Then /^I should get nil$/ do
 end
 
 Then /^I should be get an error message: "([^"]*)"$/ do |message|
-  pending("I need to learn more about mocks and stubs")  # express the regexp above with the code you wish you had
+  $stderr.rewind
+  $stderr.string.chomp.should == message
+end
+
+After do
+  $stderr = @orig_stderr
 end

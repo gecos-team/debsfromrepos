@@ -10,8 +10,17 @@ module DebsFromRepos
     end
 
     def get_url
-      return nil if @suite.empty? || @component.empty?
-      return nil unless @url.match(/(http|ftp)s*:\/\/([\S]*)\/.*/)
+      if @suite.empty?
+        $stderr.puts "ERROR: the suite was missing"
+        return nil
+      elsif @component.empty?
+        $stderr.puts "ERROR: the component was missing"
+        return nil
+      end
+      unless @url.match(/(http|ftp)s*:\/\/([\S]*)\/.*/)
+        $stderr.puts "ERROR: the url format is wrong"
+        return nil
+      end
       "#{@url}/dists/#{@suite}/#{@component}/binary-i386/Packages.gz"
     end
   end
