@@ -3,10 +3,7 @@ Given /^a repo with url "([^"]*)"$/ do |url|
 end
 
 Given /^a repo with url "([^"]*)", a suite "([^"]*)" and a component called "([^"]*)" altogether$/ do |url, suite, component|
-  @repo = DebsFromRepos::ListUrl.new(url,
-                                      suite,
-                                      component
-                                     )
+  @repo = DebsFromRepos::ListUrl.new(url, suite, component)
 end
 
 Given /^which suite is "([^"]*)"$/ do |suite|
