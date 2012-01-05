@@ -1,22 +1,18 @@
 module DebsFromRepos
   class ListUrls
 
-    attr_accessor :suites, :components
+    attr_accessor :suite, :component
 
-    def initialize(url, suites=[], components=[])
+    def initialize(url, suite='', component='')
       @url = url
-      @suites = suites
-      @components = components
+      @suite = suite
+      @component = component
     end
 
-    def get_urls
-      urls = []
-      @suites.each do |suite|
-        @components.each do |component|
-          urls << "#{@url}/dists/#{suite}/#{component}/binary-i386/Packages.gz"
-        end
-      end
-      urls
+    def get_url
+      return nil if @suite.empty? || @component.empty?
+      return nil unless @url.match(/(http|ftp)s*:\/\/([\S]*)\/.*/)
+      "#{@url}/dists/#{@suite}/#{@component}/binary-i386/Packages.gz"
     end
   end
 end
