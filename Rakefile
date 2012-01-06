@@ -26,4 +26,4 @@ Cucumber::Rake::Task.new(:features) do |t|
   t.fork = false
 end
 
-task :default => :gem
+task :default => :features
