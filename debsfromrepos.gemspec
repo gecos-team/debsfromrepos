@@ -23,6 +23,8 @@ examples/repo2json.rb
   #s.executables << 'debsfromrepo'
   s.add_development_dependency('rake')
   s.add_development_dependency('cucumber')
+  s.add_development_dependency('open-uri')
+  s.add_development_dependency('zlib')
   s.add_development_dependency('json')
   #s.add_development_dependency('rdoc')
   #s.add_development_dependency('aruba', '~> 0.4.6')
