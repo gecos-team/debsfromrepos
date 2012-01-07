@@ -17,7 +17,7 @@ Feature: List full urls from a Debian/Ubuntu repo
     And one single component called "main"
     When ask for the full url
     Then I should get nil
-    And I should be get an error message: "ERROR: the suite was missing"
+    And I should get an error message: "ERROR: the suite was missing"
 
   @url @bad_url
   Scenario: URL for a repo with a missing component
@@ -25,7 +25,7 @@ Feature: List full urls from a Debian/Ubuntu repo
     And which suite is "oneiric"
     When ask for the full url
     Then I should get nil
-    And I should be get an error message: "ERROR: the component was missing"
+    And I should get an error message: "ERROR: the component was missing"
 
   @url @bad_url
   Scenario Outline: URL for a repo with a wrong base url
@@ -34,7 +34,7 @@ Feature: List full urls from a Debian/Ubuntu repo
     And one single component called "main"
     When ask for the full url
     Then I should get nil
-    And I should be get an error message: "ERROR: the url format is wrong"
+    And I should get an error message: "ERROR: the url format is wrong"
 
     Examples:
         | url                                   |

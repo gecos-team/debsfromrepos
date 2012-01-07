@@ -31,7 +31,7 @@ Then /^I should get nil$/ do
   @urls.should be_nil
 end
 
-Then /^I should be get an error message: "([^"]*)"$/ do |message|
+Then /^I should get an error message: "([^"]*)"$/ do |message|
   $stderr.rewind
   $stderr.string.chomp.should == message
 end
