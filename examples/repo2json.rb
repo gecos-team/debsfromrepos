@@ -25,7 +25,8 @@ sources_lists.each_pair do |server,suites|
     components.each_pair do |component,pkgs|
       packages[server][suite][component] = {}
       repo = DebsFromRepos::ListUrl.new(server,suite,component)
-      pkgs = DebsFromRepos::Packages.new(repo.get_url)
+      pkgs_url, translations_url = repo.get_packages_url, repo.get_translations_url('es')
+      pkgs = DebsFromRepos::Packages.new(pkgs_url, translations_url)
       packages[server][suite][component] = pkgs.packages
     end
   end

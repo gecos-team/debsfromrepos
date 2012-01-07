@@ -5,6 +5,8 @@
 This is a small lib to get the names and descriptions for the availables
 packages at specific (or group of them) Debian/Ubuntu repository.
 
+The description can be obtained in a specific language.
+
 == Installation
 
 
@@ -26,21 +28,30 @@ and ask for the right <tt>Packages.gz</tt> url for a specific Debian/Ubuntu serv
   server = "http://us.archive.ubuntu.com/ubuntu"
   suite = "oneiric"
   component = "main"
-  repository = DebsFromRepos::ListUrl.new(server, suite, component)
-  repository.get_url
+  language = "es"
+  repository = DebsFromRepos::ListUrl.new(server, suite, component, language)
+  packages_url = repository.get_packages_url
   # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/binary-i386/Packages.gz"
+  translations_url = repository.get_translations_url
+  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/i18n/Translation-es.gz"
 
 you also can change the <tt>suite</tt> or <tt>component</tt>
 
   repository.component = 'universe'
   # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/universe/binary-i386/Packages.gz"
 
+or ask for another <tt>language</tt>
+
+    repository.get_translations_url('it')
+    # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/i18n/Translation-it.gz"
+
+
 and then get all the packages' names and descriptions on that component of
 that suite of that repository:
 
-  pkgs = DebsFromRepos::Packages.new(repositories)
-  pkgs.packages['2ping']
-  # => "Ping utility to determine directional packet loss"
+  pkgs = DebsFromRepos::Packages.new(packages_url, translations_url)
+  pkgs.packages['zlib1g']
+  # => "Biblioteca de compresión, ejecutables"
 
 == Tests
 
