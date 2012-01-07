@@ -4,7 +4,7 @@ Feature: List full urls from a Debian/Ubuntu repo
   I want to get the url for the remote Package.gz file
 
   @url
-  Scenario: URL for a repo with one component
+  Scenario: URL for a repo
     Given a repo with url "http://us.archive.ubuntu.com/ubuntu"
     And which suite is "oneiric"
     And one single component called "main"
