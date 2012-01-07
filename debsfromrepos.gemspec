@@ -30,16 +30,30 @@ and ask for the right <tt>Packages.gz</tt> url for a specific Debian/Ubuntu serv
   server = "http://us.archive.ubuntu.com/ubuntu"
   suite = "oneiric"
   component = "main"
-  repository = DebsFromRepos::ListUrl.new(server, suite, component)
-  repository.get_url
+  language = "es"
+  repository = DebsFromRepos::ListUrl.new(server, suite, component, language)
+  packages_url = repository.get_packages_url
   # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/binary-i386/Packages.gz"
+  translations_url = repository.get_translations_url
+  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/i18n/Translation-es.gz"
+
+you also can change the <tt>suite</tt> or <tt>component</tt>
+
+  repository.component = "universe"
+  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/universe/binary-i386/Packages.gz"
+
+or ask for another <tt>language</tt>
+
+    repository.get_translations_url("it")
+    # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/i18n/Translation-it.gz"
+
 
 and then get all the packages\' names and descriptions on that component of
 that suite of that repository:
 
-  pkgs = DebsFromRepos::Packages.new(repositories)
-  pkgs.packages[\'2ping\']
-  # => "Ping utility to determine directional packet loss"
+  pkgs = DebsFromRepos::Packages.new(packages_url, translations_url)
+  pkgs.packages["zlib1g"]
+  # => "Biblioteca de compresión, ejecutables"
   '
 
 # Add your other files here if you make them
@@ -53,12 +67,7 @@ examples/repo2json.rb
   s.require_paths << 'lib'
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.rdoc','LICENSE']
-  s.rdoc_options << '--title' << 'debsfromrepos' << '--main' << 'README.rdoc' << '--ri'
+  s.rdoc_options << '--title' << 'debsfromrepos' << '--main' << 'README.rdoc'
   #s.bindir = 'bin'
   #s.executables << 'debsfromrepo'
-  s.add_development_dependency('rake')
-  s.add_development_dependency('cucumber')
-  s.add_development_dependency('json')
-  s.add_development_dependency('rdoc')
-  #s.add_development_dependency('aruba', '~> 0.4.6')
 end
