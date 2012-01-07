@@ -1,18 +1,58 @@
-Description
-===========
+= DebsFromRepos - Debian packages availables at a spcific repository
+
+== Description
 
 This is a small lib to get the names and descriptions for the availables
 packages at specific (or group of them) Debian/Ubuntu repository.
 
-#WIP
+== Installation
 
-Usage
-=====
 
-#WIP
+  (sudo) gem install debsfromrepos
 
-License and Author
-==================
+
+== Usage
+
+You have a example of how the library works at the <tt>examples/</tt> directory:
+
+  examples/repo2json.rb
+
+Basicaly you require the lib
+
+  require 'debsfromrepos'
+
+and ask for the right <tt>Packages.gz</tt> url for a specific Debian/Ubuntu server
+
+  server = "http://us.archive.ubuntu.com/ubuntu"
+  suite = "oneiric"
+  component = "main"
+  repository = DebsFromRepos::ListUrl.new(server, suite, component)
+  repository.get\_url
+  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/binary-i386/Packages.gz"
+
+you also can change the <tt>suite</tt> or <tt>component</tt>
+
+  repository.component = 'universe'
+  # => "http://us.archive.ubuntu.com/ubuntu/dists/universe/universe/binary-i386/Packages.gz"
+
+and then get all the packages' names and descriptions on that component of
+that suite of that repository:
+
+  pkgs = DebsFromRepos::Packages.new(repositories)
+  pkgs.packages['2ping']
+  # => "Ping utility to determine directional packet loss"
+
+== Tests
+
+The features are documented and tested using <tt>Cucumber</tt> and it can be
+cheched at the <tt>features</tt> directory.
+
+To test the features just type:
+
+  rake
+
+
+== License and Author
 
 Author::
 
