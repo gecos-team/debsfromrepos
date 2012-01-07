@@ -27,13 +27,13 @@ and ask for the right <tt>Packages.gz</tt> url for a specific Debian/Ubuntu serv
   suite = "oneiric"
   component = "main"
   repository = DebsFromRepos::ListUrl.new(server, suite, component)
-  repository.get\_url
+  repository.get_url
   # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/binary-i386/Packages.gz"
 
 you also can change the <tt>suite</tt> or <tt>component</tt>
 
   repository.component = 'universe'
-  # => "http://us.archive.ubuntu.com/ubuntu/dists/universe/universe/binary-i386/Packages.gz"
+  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/universe/binary-i386/Packages.gz"
 
 and then get all the packages' names and descriptions on that component of
 that suite of that repository:
@@ -54,9 +54,7 @@ To test the features just type:
 
 == License and Author
 
-Author::
-
-* Juanje Ojeda (<jojeda@emergya.com>)
+Author:: Juanje Ojeda (<jojeda@emergya.com>)
 
 Copyright 2011 Junta de Andalucía
 
