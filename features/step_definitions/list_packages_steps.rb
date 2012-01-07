@@ -1,13 +1,25 @@
 Given /^a Packages\.gz file with url "([^"]*)"$/ do |url|
-  @url = url
+  @packages_url = url
 end
 
 Given /^a bad url "([^"]*)"$/ do |url|
-  @url = url
+  @packages_url = url
+end
+
+Given /^a Translations\-(?:es|it)\.gz file with url "([^"]*)"$/ do |url|
+  @translations_url = url
+end
+
+Given /^no Translations' url file$/ do
+  @translations_url = nil
 end
 
 When /^ask for a list of packages$/ do
-  @packages = DebsFromRepos::Packages.new(@url)
+  if @translations_url
+    @packages = DebsFromRepos::Packages.new(@packages_url, @translations_url)
+  else
+    @packages = DebsFromRepos::Packages.new(@packages_url)
+  end
   @list = @packages.packages
 end
 
