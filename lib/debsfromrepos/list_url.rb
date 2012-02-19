@@ -26,16 +26,16 @@ module DebsFromRepos
     end
 
     def get_translations_url(lang=nil)
-      @lang = lang ? lang : @lang
-      unless @lang
+      lang = lang ? lang : @lang
+      unless lang
         $stderr.puts "ERROR: no language has been selected"
         return nil
       end
-      unless @lang.match(/^[a-z][a-z]$/)
+      unless lang.match(/^[a-z][a-z]$/)
         $stderr.puts "ERROR: the language is wrong"
         return nil
       end
-      "#{@url}/dists/#{@suite}/#{@component}/i18n/Translation-#{@lang}.gz"
+      "#{@url}/dists/#{@suite}/#{@component}/i18n/Translation-#{lang}.gz"
     end
   end
 end
