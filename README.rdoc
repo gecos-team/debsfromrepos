@@ -1,5 +1,7 @@
 = DebsFromRepos - Debian packages availables at a spcific repository
 
+{<img src="https://secure.travis-ci.org/juanje/debsfromrepos.png" />}[http://travis-ci.org/juanje/debsfromrepos]
+
 == Description
 
 This is a small lib to get the names and descriptions for the availables
