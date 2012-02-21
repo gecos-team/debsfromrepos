@@ -28,6 +28,7 @@ examples/repo2json.rb
   s.extra_rdoc_files = ['README.rdoc','LICENSE']
   s.rdoc_options << '--title' << 'debsfromrepos' << '--main' << 'README.rdoc'
   s.add_development_dependency "rake"
+  s.add_development_dependency "rdoc"
   s.add_development_dependency "cucumber"
   #s.bindir = 'bin'
   #s.executables << 'debsfromrepo'
