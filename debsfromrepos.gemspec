@@ -30,6 +30,7 @@ examples/repo2json.rb
   s.add_development_dependency "rake"
   s.add_development_dependency "rdoc"
   s.add_development_dependency "cucumber"
+  s.add_development_dependency "rspec"
   #s.bindir = 'bin'
   #s.executables << 'debsfromrepo'
 end
