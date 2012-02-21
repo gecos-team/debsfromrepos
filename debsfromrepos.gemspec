@@ -9,51 +9,10 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = 'Lib to get the names and descriptions for the availables packages at specific (or group of them) Debian/Ubuntu repository.'
   s.description = '
-
-== Description
-
 This is a small lib to get the names and descriptions for the availables
 packages at specific (or group of them) Debian/Ubuntu repository.
 
-== Usage
-
-You have a example of how the library works at the <tt>examples/</tt> directory:
-
-  examples/repo2json.rb
-
-Basicaly you require the lib
-
-  require \'debsfromrepos\'
-
-and ask for the right <tt>Packages.gz</tt> url for a specific Debian/Ubuntu server
-
-  server = "http://us.archive.ubuntu.com/ubuntu"
-  suite = "oneiric"
-  component = "main"
-  language = "es"
-  repository = DebsFromRepos::ListUrl.new(server, suite, component, language)
-  packages_url = repository.get_packages_url
-  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/binary-i386/Packages.gz"
-  translations_url = repository.get_translations_url
-  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/i18n/Translation-es.gz"
-
-you also can change the <tt>suite</tt> or <tt>component</tt>
-
-  repository.component = "universe"
-  # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/universe/binary-i386/Packages.gz"
-
-or ask for another <tt>language</tt>
-
-    repository.get_translations_url("it")
-    # => "http://us.archive.ubuntu.com/ubuntu/dists/oneiric/main/i18n/Translation-it.gz"
-
-
-and then get all the packages\' names and descriptions on that component of
-that suite of that repository:
-
-  pkgs = DebsFromRepos::Packages.new(packages_url, translations_url)
-  pkgs.packages["zlib1g"]
-  # => "Biblioteca de compresión, ejecutables"
+The description can be obtained in a specific language.
   '
 
 # Add your other files here if you make them
